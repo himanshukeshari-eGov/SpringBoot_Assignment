@@ -3,22 +3,61 @@ package com.postgresjdbc.assiHim.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
 
-    private int id;
+    private UUID id;
     private String name;
     private String number;
     private String gender;
-    private String address;
+    private Address address;
+    private Boolean active;
 
-    public int getId() {
+    public Address getAddress() {
+        return address;
+    }
+
+    private Long createdTime;
+
+    public Long getCreatedTime() {
+        return createdTime;
+    }
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public void setCreatedTime(Long createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -46,11 +85,7 @@ public class User {
         this.gender = gender;
     }
 
-    public String getAddress() {
-        return address;
-    }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+
+
 }

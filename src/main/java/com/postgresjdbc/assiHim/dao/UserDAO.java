@@ -1,19 +1,30 @@
 package com.postgresjdbc.assiHim.dao;
 
 import com.postgresjdbc.assiHim.model.User;
+import com.postgresjdbc.assiHim.model.UserSearchCriteria;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface UserDAO {
      int save(User user);
 
-     int update(User user, int id);
+     User update(User user, UUID id);
 
-    int delete(int id);
+    int delete(UUID id);
     List<User> getAll();
 
-    User getById(int id);
+    User getById(UUID id);
 
     User getByNumber(String number);
+
+    List<User> getByActive(Boolean active);
+
+    User getByUserSearchCriteria(UserSearchCriteria user);
+
+
+    boolean isUniqueUser(String name, String number, UUID userId);
+
+
 
 }
