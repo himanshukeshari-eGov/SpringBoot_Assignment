@@ -8,6 +8,7 @@ import com.postgresjdbc.assiHim.model.Coordinates;
 import com.postgresjdbc.assiHim.model.User;
 import com.postgresjdbc.assiHim.model.UserSearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,10 @@ import java.util.UUID;
 
 @Repository
 public class UserDAOimpl implements UserDAO {
+
+    @Value("${api.address}")
+    private String url;
+
 
     @Autowired
     public JdbcTemplate jdbcTemplate;
@@ -145,7 +150,7 @@ public class UserDAOimpl implements UserDAO {
             return 0; // User already exists, return 0 to indicate not created
         }
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://random-data-api.com/api/v2/users?size=1";
+
         ResponseEntity<Map> response = restTemplate.getForEntity(url, Map.class);
         Map<String, Object> data = response.getBody();
         Map<String, Object> addressData = (Map<String, Object>) data.get("address");
